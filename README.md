@@ -18,3 +18,5 @@ To build the uCNC_controller firmware the Arduino stepper library is required.
 The firmware requires a 5V Arduino board with at least 13 digital and 6 Analog I/O ports.
 Recommended are 32k of flash memory.
 Among the supported boards are: Arduino Uno, Arduino Nano, Arduino Mega 2560, and many more.
+
+https://www.youtube.com/watch?v=kcXlak7RNV0
