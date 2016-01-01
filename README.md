@@ -19,7 +19,7 @@ The firmware requires a 5V Arduino board with at least 13 digital and 6 Analog I
 Recommended are 32k of flash memory.
 Among the supported boards are: Arduino Uno, Arduino Nano, Arduino Mega 2560, and many more.
 
-youtube part1-3
-http://www.youtube.com/watch?v=rLQajSRnELc
-https://www.youtube.com/watch?v=kcXlak7RNV0
-https://www.youtube.com/watch?v=kcXlak7RNV0
+youtube part1-3 
+http://www.youtube.com/watch?v=rLQajSRnELc  
+https://www.youtube.com/watch?v=kcXlak7RNV0  
+https://www.youtube.com/watch?v=kcXlak7RNV0  
