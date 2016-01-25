@@ -18,16 +18,21 @@ Default configuration:
   Connector   IO-Ports on Arduino nano w. ATMEGA328P
    #ifdef GRBL_BOARD and  using STEPPER_3PIN
 ------------>--------------------------------------------
-  Stepper 1:  5, 2, 8 for Polulu A4988 driver
-  Stepper 2:  6, 3 ,8            "
-  Stepper 3:  7, 4, 8           "
+ * pin 1: direction
+ * pin 2: step
+ * pin 3: enable(inverted)
+ Stepper myStepperX(5,2,8);
+ Stepper myStepperY(6,3,8);
+ Stepper myStepperZ(7,4,8);
 
-  12V out 1:  3
-  12V out 2:  5
-  12V out 3:  6
-  Laser out:  13
-  Servo out:  12
-  Unused   :  A0,A1,A6,A7 (A6 and A7 cannot be used as output)
+ /* General purpose outputs */
+ #define LED_PIN    12   //LED/LASER output
+ #define DIR_PIN    13   //LED/LASER output
+ #define GP1_PIN    A3   //General pupose (coolant 1) output
+ #define GP2_PIN    A4   //General pupose (coolant 2) output
+ #define GP3_PIN    A2   //General pupose
+ #define SERVO_PIN  A5   //Servo output
+ #define ENDSW_PIN  A0   //Start/End Switch
 
 System Reset and Initialization routine
 ---------------------------------------
