@@ -36,35 +36,6 @@ Available are:
 4pin: Unipolar stepper driver for use with ULN2003/2004 driver ICs
 */
 
-#ifdef STEPPER_2PIN
-/*
- * two-wire constructor.
- * Sets which wires should control the motor.
- */
-Stepper::Stepper(int motor_pin_1, int motor_pin_2)
-{
-  this->step_number = 0;      // which step the motor is on
-  this->speed = 0;            // the motor speed, in Hz
-  this->direction = 0;        // motor direction
-  this->last_step_time = 0;   // time stamp in ms of the last step taken
-  this->last_step = 0;
-
-  // Arduino pins for the motor control connection:
-  this->motor_pin_1 = motor_pin_1;
-  this->motor_pin_2 = motor_pin_2;
-
-  // setup the pins on the microcontroller:
-  pinMode(this->motor_pin_1, OUTPUT);
-  pinMode(this->motor_pin_2, OUTPUT);
-
-  // When there are only 2 pins, set the other two to 0:
-  this->motor_pin_3 = 0;
-  this->motor_pin_4 = 0;
-
-  // pin_count is used by the stepMotor() method:
-  this->pin_count = 2;
-}
-#endif
 
 #ifdef STEPPER_3PIN
 /*
@@ -99,36 +70,6 @@ Stepper::Stepper(int motor_pin_1, int motor_pin_2, int motor_pin_3)
 }
 #endif
 
-
-#ifdef STEPPER_4PIN
-/*
- *   constructor for four-pin version
- *   Sets which wires should control the motor.
- */
-Stepper::Stepper(int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4, int hstep)
-{
-  this->step_number = 0;        // which step the motor is on
-  this->speed = 0;              // the motor speed, in Hz
-  this->last_step_time = 0;     // time stamp in ms of the last step taken
-  this->last_step = 0;
-  this->halfstep = hstep;
-
-  // Arduino pins for the motor control connection:
-  this->motor_pin_1 = motor_pin_1;
-  this->motor_pin_2 = motor_pin_2;
-  this->motor_pin_3 = motor_pin_3;
-  this->motor_pin_4 = motor_pin_4;
-
-  // setup the pins on the microcontroller:
-  pinMode(this->motor_pin_1, OUTPUT);
-  pinMode(this->motor_pin_2, OUTPUT);
-  pinMode(this->motor_pin_3, OUTPUT);
-  pinMode(this->motor_pin_4, OUTPUT);
-
-  // pin_count is used by the stepMotor() method:
-  this->pin_count = 4;
-}
-#endif
 
 /*
   Sets the speed in steps per second (or Hz)
@@ -251,65 +192,6 @@ void Stepper::stepMotor(int step)
   }
 #endif
 
-#ifdef STEPPER_4PIN
-  if (this->pin_count == 4) {
-    if (this->halfstep)
-      thisStep = this->step_number % 8;
-    else 
-      thisStep = 2 * (this->step_number % 4);
-        
-    switch (thisStep) {
-      case 0:    // 1010
-      digitalWrite(motor_pin_1, HIGH);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, HIGH);
-      digitalWrite(motor_pin_4, LOW);
-      break;
-      case 1:    // 0010
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, HIGH);
-      digitalWrite(motor_pin_4, LOW);
-      break;
-      case 2:    // 0110
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, HIGH);
-      digitalWrite(motor_pin_3, HIGH);
-      digitalWrite(motor_pin_4, LOW);
-      break;
-      case 3:    // 0100
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, HIGH);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, LOW);
-      break;
-      case 4:    //0101
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, HIGH);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, HIGH);
-      break;
-      case 5:    //0001
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, HIGH);
-      break;
-      case 6:    //1001
-      digitalWrite(motor_pin_1, HIGH);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, HIGH);
-      break;
-      case 7:    //1000
-      digitalWrite(motor_pin_1, HIGH);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, LOW);
-      break;
-    }
-  }
-#endif
 }   
 
 void Stepper::powerdown()

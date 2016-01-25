@@ -26,22 +26,17 @@ typedef long posval_t;
    Only define the ones you want/need this saves memory */
 //#define STEPPER_2PIN 1
 #define STEPPER_3PIN 1
-#define STEPPER_4PIN 1
+//#define STEPPER_4PIN 1
 
 class Stepper {
   public:
     // constructors:
-#ifdef STEPPER_2PIN    
-    Stepper(int motor_pin_1, int motor_pin_2);
-#endif
+
 
 #ifdef STEPPER_3PIN    
     Stepper(int motor_pin_1, int motor_pin_2, int motor_pin_3);
 #endif
 
-#ifdef STEPPER_4PIN    
-    Stepper(int motor_pin_1, int motor_pin_2, int motor_pin_3, int motor_pin_4, int hstep);
-#endif
 
     int chk(long frequency, int noblock);
     void setSpeed(int whatSpeed);

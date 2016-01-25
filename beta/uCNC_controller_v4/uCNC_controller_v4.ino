@@ -77,34 +77,6 @@ float conversionFactor = 1;  // 1 for mm 25.4 for inches
    are using, there are big diffenences here.
    Refer to the code in uCNC_stepper.cpp to understand
    the code, and and make the right choices here. */
-#ifdef V4_BOARD
-Stepper myStepperX(10,11,7);
-Stepper myStepperY(8,9,7);            
-//Stepper myStepperZ(2,4,7);            
-Stepper myStepperZ(18,16,17,19,0);
-
-/* General purpose outputs */
-#define LED_PIN    13   //LED/LASER output
-#define GP1_PIN     6   //General pupose (coolant 1) output
-#define GP2_PIN     5   //General pupose (coolant 2) output
-#define GP3_PIN     3   //General pupose
-#define SERVO_PIN  12   //Servo output
-#define ENDSW_PIN  A0   //Start/End Switch input
-#endif
-
-#ifdef V1_BOARD
-Stepper myStepperX(8,10,9,11,0);
-Stepper myStepperY(4,6,5,7,0);            
-Stepper myStepperZ(18,19,17,16,0);
-
-/* General purpose outputs */
-#define LED_PIN    13   //LED/LASER output
-#define GP1_PIN     2   //General pupose (coolant 1) output
-#define GP2_PIN     3   //General pupose (coolant 2) output
-#define GP3_PIN    -1   //General pupose
-#define SERVO_PIN  12   //Servo output
-#define ENDSW_PIN  A0   //Start/End Switch input
-#endif
 
 #ifdef GRBL_BOARD
 Stepper myStepperX(5,2,8);
