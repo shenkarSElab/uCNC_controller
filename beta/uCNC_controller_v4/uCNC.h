@@ -24,15 +24,12 @@ typedef long posval_t;
 
 /* Define these according to your driver board design 
    Only define the ones you want/need this saves memory */
-//#define STEPPER_2PIN 1
 #define STEPPER_3PIN 1
-//#define STEPPER_4PIN 1
 
 class Stepper {
   public:
     // constructors:
-
-
+    
 #ifdef STEPPER_3PIN    
     Stepper(int motor_pin_1, int motor_pin_2, int motor_pin_3);
 #endif

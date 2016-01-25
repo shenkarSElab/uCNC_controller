@@ -152,32 +152,6 @@ void Stepper::stepMotor(int step)
   this->last_step = step;
 
 
-#ifdef STEPPER_2PIN
-  if (this->pin_count == 2) {
-    thisStep = this->step_number % 4;
-    
-    switch (thisStep) {
-      case 0: /* 01 */
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, HIGH);
-      break;
-      case 1: /* 11 */
-      digitalWrite(motor_pin_1, HIGH);
-      digitalWrite(motor_pin_2, HIGH);
-      break;
-      case 2: /* 10 */
-      digitalWrite(motor_pin_1, HIGH);
-      digitalWrite(motor_pin_2, LOW);
-      break;
-      case 3: /* 00 */
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, LOW);
-      break;
-    }
-    return;
-  }
-#endif
-
 #ifdef STEPPER_3PIN
   if (this->pin_count == 3) {
     /*Enable stepper driver*/
@@ -196,24 +170,11 @@ void Stepper::stepMotor(int step)
 
 void Stepper::powerdown()
 {
-#ifdef STEPPER_2PIN
-  if (this->pin_count == 2) {
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, LOW);
-  }
-#endif
+
 #ifdef STEPPER_3PIN
   if (this->pin_count == 3) {
       /* Pull enable pin HIGH*/
       digitalWrite(motor_pin_3, HIGH);
-  }
-#endif
-#ifdef STEPPER_4PIN
-  if (this->pin_count == 4) {
-      digitalWrite(motor_pin_1, LOW);
-      digitalWrite(motor_pin_2, LOW);
-      digitalWrite(motor_pin_3, LOW);
-      digitalWrite(motor_pin_4, LOW);
   }
 #endif
 }

@@ -24,7 +24,6 @@
 float uCNC_Version = 1.99;
 
 /* Version of the controller board in use.*/
-//#define V1_BOARD 1
 #define GRBL_BOARD 1
 
 /* Development functions - broken code */
