@@ -25,4 +25,9 @@ Direct ink to PCB CNC-Plotter 1-3
 [![Direct ink to PCB CNC-Plotter](http://img.youtube.com/vi/QPSfblHRvac/0.jpg)](http://www.youtube.com/watch?v=QPSfblHRvac)  
 [![Direct ink to PCB CNC-Plotter](http://img.youtube.com/vi/kcXlak7RNV0/0.jpg)](http://www.youtube.com/watch?v=kcXlak7RNV0)  
 
-https://www.youtube.com/watch?v=foT7rlwymcc
+PCB-Software talk  
+[![Direct ink to PCB-Software talk](http://img.youtube.com/vi/foT7rlwymcc/0.jpg)](http://www.youtube.com/watch?v=foT7rlwymcc)  
+PCB-Writer talk  
+[![Direct ink to PCB-Writer talk](http://img.youtube.com/vi/aCtMlm7U5UY/0.jpg)](http://www.youtube.com/watch?v=aCtMlm7U5UY)  
+
+
