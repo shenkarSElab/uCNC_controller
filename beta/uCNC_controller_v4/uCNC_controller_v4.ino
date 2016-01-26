@@ -78,17 +78,18 @@ float conversionFactor = 1;  // 1 for mm 25.4 for inches
    the code, and and make the right choices here. */
 
 #ifdef GRBL_BOARD
-Stepper myStepperX(5,2,8);
-Stepper myStepperY(6,3,8);            
+//DIR, STEP ,EN
+Stepper myStepperY(3,4,2);
+Stepper myStepperX(12, 11,10);            
 Stepper myStepperZ(7,4,8);            
+#define SERVO_PIN  9   //Servo output
 
 /* General purpose outputs */
-#define LED_PIN    12   //LED/LASER output
+#define LED_PIN    A5   //LED/LASER output
 #define DIR_PIN    13   //LED/LASER output
 #define GP1_PIN    A3   //General pupose (coolant 1) output
 #define GP2_PIN    A4   //General pupose (coolant 2) output
 #define GP3_PIN    A2   //General pupose
-#define SERVO_PIN  A5   //Servo output
 #define ENDSW_PIN  A0   //Start/End Switch input
 #endif
 
