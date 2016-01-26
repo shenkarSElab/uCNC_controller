@@ -19,7 +19,10 @@ The firmware requires a 5V Arduino board with at least 13 digital and 6 Analog I
 Recommended are 32k of flash memory.
 Among the supported boards are: Arduino Uno, Arduino Nano, Arduino Mega 2560, and many more.
 
-youtube part1-3 
-http://www.youtube.com/watch?v=rLQajSRnELc  
-https://www.youtube.com/watch?v=kcXlak7RNV0  
-https://www.youtube.com/watch?v=kcXlak7RNV0  
+youtube videos from source  
+Direct ink to PCB CNC-Plotter 1-3  
+[![Direct ink to PCB CNC-Plotter](http://img.youtube.com/vi/rLQajSRnELc/0.jpg)](http://www.youtube.com/watch?rLQajSRnELc)  
+[![Direct ink to PCB CNC-Plotter](http://img.youtube.com/vi/QPSfblHRvac/0.jpg)](http://www.youtube.com/watch?v=QPSfblHRvac)  
+[![Direct ink to PCB CNC-Plotter](http://img.youtube.com/vi/kcXlak7RNV0/0.jpg)](http://www.youtube.com/watch?v=kcXlak7RNV0)  
+
+https://www.youtube.com/watch?v=foT7rlwymcc
