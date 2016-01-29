@@ -147,7 +147,6 @@ int moveX(posval_t dX, char *px, char *py, char *pz)
   X = X + dX;
 
   *px += tristate(dX);
-//  *py += tristate(dX); // My Plotter (needs COMPLEX_MOVE defined)
   return stepIssueFrequency_X;
 }
 
@@ -301,21 +300,6 @@ void _moveToXYZ(int pX, int pY, int pZ, int accelX, int accelY, int accelZ)
   if (pz) {
     myStepperZ.update(tristate(pz));
   } 
-
-#ifdef COMPLEX_MOVE
-  if (abs(px)==2) {
-    myStepperX.chk(fx+accelX);
-    myStepperX.update(tristate(px));
-  }
-  if (abs(py)==2) {
-    myStepperY.chk(fy+accelY);
-    myStepperY.update(tristate(py));
-  }
-  if (abs(pz)==2) {
-    myStepperZ.chk(fz+accelZ);
-    myStepperZ.update(tristate(pz));
-  }
-#endif
 }
 
 int accelerate( posval_t pos,posval_t distance, int acceleration, int limit )
@@ -374,40 +358,6 @@ void moveToXYZ(posval_t pX, posval_t pY, posval_t pZ, int accelX, int accelY, in
     _moveToXYZ(X + mX, Y + mY, Z + mZ, accelX, accelY, accelZ);
   }
 }
-/*
-void moveToX(int pX)
-{
-  moveToXYZ(pX - X, 0, 0, 0, 0, 0);
-}
-
-void moveToY(int pY)
-{
-  moveToXYZ(0, pY - Y, 0, 0, 0, 0);
-}
-
-void moveToXY(int pX, int pY)
-{
-  moveToXYZ(pX - X, pY - Y, 0, 0, 0, 0);
-}
-*/
-#ifdef BROKEN
-void drill()
-{
-  int oZ;
-  float oSpeed;
-  
-  delay(500);
-  oZ = Z;
-//  oSpeed=motorSpeed;
-  
-//  setXYSpeed(DRILL_SPEED);
-  
-  moveToXYZ(X,Y,Z-(DRILL_DEPTH*stepsPerMillimeter_X), 0, 0, 0);
-  delay(500);
-//  setXYSpeed(oSpeed);
-  moveToXYZ(X,Y,oZ, 0, 0, 0);
-}
-#endif /*BROKEN*/   
 
 void wait(unsigned long steptime)
 {
@@ -569,88 +519,6 @@ void jumpPos(float x2, float y2, float z2)
   posY=y2;
   posZ=z2;
 }
-
-#ifdef BROKEN
-void arcPos(int direction, float x2, float y2, float i, float j)
-{
-//      case 2://Clockwise arc
-//      case 3://Counterclockwise arc
-      float angleA, angleB, angle, radius, aX, aY, bX, bY, length, x, y;
-
-      // Center coordinates are always relative
-
-      aX = (X - i);
-      aY = (Y - j);
-      bX = (x2 - i);
-      bY = (y2 - j);
-
-      Serial.println("aX");
-      Serial.println(aX);
-      Serial.println("aY");
-      Serial.println(aY);
-
-      Serial.println("bX");
-      Serial.println(bX);
-      Serial.println("bY");
-      Serial.println(bY);
-
-      if (direction == 0) { // Clockwise
-        angleA = atan2(bY, bX);
-        angleB = atan2(aY, aX);
-      }
-      else { // Counterclockwise
-        angleA = atan2(aY, aX);
-        angleB = atan2(bY, bX);
-      }
-
-      Serial.println("AngleA");
-      Serial.println(angleA);
-      Serial.println("AngleB");
-      Serial.println(angleB);
-
-
-      // Make sure angleB is always greater than angleA
-      // and if not add 2PI so that it is (this also takes
-      // care of the special case of angleA == angleB,
-      // ie we want a complete circle)
-      if (angleB <= angleA) angleB += 2 * M_PI;
-      angle = angleB - angleA;
-
-      radius = sqrt(aX * aX + aY * aY);
-
-      Serial.println("Radius");
-      Serial.println(radius);
-
-      length = radius * angle;
-
-      Serial.println("Length");
-      Serial.println(length);
-
-      int steps, s, step;
-//      steps = length / ((stepsPerMillimeter_X + stepsPerMillimeter_Y)/4); // approx 0.5mm
-      steps = length / 4; // approx 0.5mm
-
-      Serial.println("Steps");
-      Serial.println(steps);
-
-
-      for (s = 1; s <= steps; s++) {
-        step = (direction == 1) ? s : steps - s; // Work backwards for CW
-        x = i + radius * cos(angleA + angle * ((float) step / steps));
-        y = j + radius * sin(angleA + angle * ((float) step / steps));
-
-      Serial.println("X");
-      Serial.println(x);
-      Serial.println("Y");
-      Serial.println(y);
-
-        // straight line to new points
-        linePos(x,y,posZ);
-      }
-      
-  linePos(x2,y2,posZ);
-}
-#endif /*BROKEN*/
 
 void movePosXYZ (float x2, float y2, float z2, float feedrate )
 {

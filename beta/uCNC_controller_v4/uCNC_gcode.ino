@@ -67,17 +67,6 @@ void process_command(uint8_t *command_string)
       if (command_exists('F')) _feedrate = getValue('F'); //feedrate persists till changed.
       movePosXYZ (fp.x, fp.y, fp.z, _feedrate);
       break;
-#ifdef BROKEN
-    case 2: //Coordinated Motion
-    case 3: //Coordinated Motion counterclockwise
-      float I,J;
-      setXYZ(&fp);
-      if (command_exists('F')) _feedrate = getValue('F'); //feedrate persists till changed.
-      if (command_exists('I')) I = getValue('I');
-      if (command_exists('J')) J = getValue('J');
-      arcPos((code-2), fp.x, fp.y, fp.x+I, fp.y+J);
-      break; 
-#endif /*BROKEN*/   
     case 4: //Dwell
       delay((int)getValue('P'));
       break;
@@ -95,13 +84,6 @@ void process_command(uint8_t *command_string)
       movePosXYZ (fp.x, fp.y, fp.z, 0);
       movePosXYZ (0, 0, 0, 0);
       break;
-#ifdef BROKEN
-    case 81: // drilling operation
-      setXYZ(&fp);
-      linePos (fp.x, fp.y, fp.z, _feedrate );
-      drill();
-      break;
-#endif /*BROKEN*/   
     case 90://Absolute Positioning
       abs_mode = true;
       break;
@@ -158,32 +140,6 @@ void process_command(uint8_t *command_string)
     case 18:
       powerdown();
       break;
-#ifdef MEM32K
-    case 150:
-      if (command_exists('S')) motorMode = (int)getValue('S');
-      break;
-    case 151:
-      if (command_exists('S')) servoPosMax = (int)getValue('S');
-      break;
-    case 152:
-      if (command_exists('S')) servoPosMin = (int)getValue('S');
-      break;
-    case 153:
-      if (command_exists('S')) servoToolInc = (int)getValue('S');
-      break;
-    case 154:
-      if (command_exists('S')) servoPosZfactor = getValue('S');
-      break;
-    case 160:
-      if (command_exists('S')) stepsPerMillimeter_X = getValue('S');
-      break;
-    case 161:
-      if (command_exists('S')) stepsPerMillimeter_Y = getValue('S');
-      break;
-    case 162:
-      if (command_exists('S')) stepsPerMillimeter_Z = getValue('S');
-      break;
-#endif /*MEM32K*/
     }
     updateMotorCodes();
   }

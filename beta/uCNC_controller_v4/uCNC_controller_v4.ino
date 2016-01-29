@@ -1,21 +1,3 @@
-/*
- * This file is part of uCNC_controller.
- *
- * Copyright (C) 2014  D.Herrendoerfer
- *
- *   uCNC_controller is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   uCNC_controller is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with uCNC_controller.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 #include <Servo.h>
 #include "uCNC.h"
@@ -23,20 +5,9 @@
 /* Version of this progam */
 float uCNC_Version = 1.99;
 
-/* Version of the controller board in use.*/
-#define GRBL_BOARD 1
-
-/* Development functions - broken code */
+/* Development functions*/
 //#define BUILTIN 1
-//#define BROKEN 1
 
-/* If you are trying to run this on a 16k Arduino
-   comment out this, you will loose some functions
-   but it will fit with max 64k step positions */
-#define MEM32K 1
-
-/* Define this if you have composite axis */
-//#define COMPLEX_MOVE 1
 
 /* Define this if you want the machine to perform
    a reset during startup, else, the first set_home
@@ -77,7 +48,6 @@ float conversionFactor = 1;  // 1 for mm 25.4 for inches
    Refer to the code in uCNC_stepper.cpp to understand
    the code, and and make the right choices here. */
 
-#ifdef GRBL_BOARD
 //DIR, STEP ,EN
 Stepper myStepperY(3,4,2);
 Stepper myStepperX(12, 11,10);            
@@ -91,7 +61,7 @@ Stepper myStepperZ(7,4,8);
 #define GP2_PIN    A4   //General pupose (coolant 2) output
 #define GP3_PIN    A2   //General pupose
 #define ENDSW_PIN  A0   //Start/End Switch input
-#endif
+
 
 /* Servo functions and limits */
 Servo myServo;
@@ -199,4 +169,23 @@ void loop() {
     }
   }
 }
+
+/*
+ * This file is part of uCNC_controller.
+ *
+ * Copyright (C) 2014  D.Herrendoerfer
+ *
+ *   uCNC_controller is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   uCNC_controller is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with uCNC_controller.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
