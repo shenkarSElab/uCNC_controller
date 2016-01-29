@@ -5,6 +5,27 @@
 /* Version of this progam */
 float uCNC_Version = 1.99;
 
+/* Stepper library initialization 
+   README:
+   Depending on the type of control board you
+   are using, there are big diffenences here.
+   Refer to the code in uCNC_stepper.cpp to understand
+   the code, and and make the right choices here. */
+
+//DIR, STEP ,EN
+Stepper myStepperX(11, 12,10);
+Stepper myStepperY(3,4,2);          
+Stepper myStepperZ(6,7,8);   //not in use !!         
+#define SERVO_PIN  9   //Servo output
+
+/* General purpose outputs */
+#define LED_PIN    A5   //LED/LASER output
+#define DIR_PIN    13   //LED/LASER output
+#define GP1_PIN    A3   //General pupose (coolant 1) output
+#define GP2_PIN    A4   //General pupose (coolant 2) output
+#define GP3_PIN    A2   //General pupose
+#define ENDSW_PIN  A0   //Start/End Switch input
+
 /* Development functions*/
 //#define BUILTIN 1
 
@@ -40,38 +61,6 @@ int   stepDriveSlack_Z = 0;
 
 /* Unit conversion factor */
 float conversionFactor = 1;  // 1 for mm 25.4 for inches
-
-/* Stepper library initialization 
-   README:
-   Depending on the type of control board you
-   are using, there are big diffenences here.
-   Refer to the code in uCNC_stepper.cpp to understand
-   the code, and and make the right choices here. */
-
-/*
-//stepper1  X
-dir = 11
-step = 12
-en = 10
-///stepper2  Y
-dir = 3
-step = 4
-en = 2
-*/
-//DIR, STEP ,EN
-Stepper myStepperX(11, 12,10);
-Stepper myStepperY(3,4,2);          
-Stepper myStepperZ(6,7,8);   //not in use !!         
-#define SERVO_PIN  9   //Servo output
-
-/* General purpose outputs */
-#define LED_PIN    A5   //LED/LASER output
-#define DIR_PIN    13   //LED/LASER output
-#define GP1_PIN    A3   //General pupose (coolant 1) output
-#define GP2_PIN    A4   //General pupose (coolant 2) output
-#define GP3_PIN    A2   //General pupose
-#define ENDSW_PIN  A0   //Start/End Switch input
-
 
 /* Servo functions and limits */
 Servo myServo;
