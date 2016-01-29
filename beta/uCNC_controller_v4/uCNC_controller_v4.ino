@@ -48,10 +48,20 @@ float conversionFactor = 1;  // 1 for mm 25.4 for inches
    Refer to the code in uCNC_stepper.cpp to understand
    the code, and and make the right choices here. */
 
+/*
+//stepper1  X
+dir = 11
+step = 12
+en = 10
+///stepper2  Y
+dir = 3
+step = 4
+en = 2
+*/
 //DIR, STEP ,EN
-Stepper myStepperY(3,4,2);
-Stepper myStepperX(12, 11,10);            
-Stepper myStepperZ(7,4,8);            
+Stepper myStepperX(11, 12,10);
+Stepper myStepperY(3,4,2);          
+Stepper myStepperZ(6,7,8);   //not in use !!         
 #define SERVO_PIN  9   //Servo output
 
 /* General purpose outputs */
