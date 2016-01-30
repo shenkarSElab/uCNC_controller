@@ -13,7 +13,7 @@ float uCNC_Version = 1.99;
    the code, and and make the right choices here. */
 
 //DIR, STEP ,EN
-Stepper myStepperX(11, 12,10);
+Stepper myStepperX(12, 11,10);
 Stepper myStepperY(3,4,2);          
 Stepper myStepperZ(6,7,8);   //not in use !!         
 #define SERVO_PIN  9   //Servo output
