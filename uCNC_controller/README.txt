@@ -1,3 +1,7 @@
+ ## not in use
+ latest version is at beta/uCNC_controller_v4
+ 
+ 
  *
  * This file is part of uCNC_controller.
  *
